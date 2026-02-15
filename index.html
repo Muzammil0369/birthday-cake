@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Sir Iftikhar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #0d071a 0%, #1a102a 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Animated background orbs (smooth pulse) */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: 0;
+      animation: orbPulse 8s infinite alternate ease-in-out;
+    }
+
+    .orb1 {
+      width: 70vmax;
+      height: 70vmax;
+      background: rgba(147, 51, 234, 0.2);
+      top: -20%;
+      left: -20%;
+      animation-duration: 12s;
+    }
+
+    .orb2 {
+      width: 80vmax;
+      height: 80vmax;
+      background: rgba(236, 72, 153, 0.2);
+      bottom: -30%;
+      right: -20%;
+      animation-duration: 15s;
+      animation-delay: -5s;
+    }
+
+    @keyframes orbPulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* Cake container */
+    #cake {
+      position: relative;
+      text-align: center;
+      z-index: 20;
+      transform: scale(1.15);
+      filter: drop-shadow(0 30px 30px #000000b0);
+    }
+
+    /* Layer base styles */
+    .layer {
+      width: 300px;
+      height: 80px;
+      border-radius: 40px 40px 25px 25px;
+      margin: 0 auto 10px auto;
+      box-shadow: 0 12px 0 #2b1a0f, 0 25px 30px #000000;
+      border: 2px solid rgba(255, 235, 150, 0.5);
+      opacity: 0; /* Start hidden */
+      animation: layerDrop 0.7s cubic-bezier(0.25, 1.2, 0.5, 1) forwards;
+    }
+
+    /* Layer colors */
+    #l1 { background: linear-gradient(145deg, #fcd34d, #f59e0b); animation-delay: 0.3s; }
+    #l2 { background: linear-gradient(145deg, #fdba74, #ea580c); animation-delay: 0.8s; }
+    #l3 { background: linear-gradient(145deg, #f9a8d4, #db2777); animation-delay: 1.3s; }
+
+    /* Falling animation */
+    @keyframes layerDrop {
+      0% { opacity: 0; transform: translateY(-500px); }
+      70% { opacity: 1; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Candle */
+    .candle {
+      width: 22px;
+      height: 90px;
+      background: linear-gradient(150deg, #fffae6, #f5e6d3);
+      border-radius: 11px 11px 6px 6px;
+      margin: 0 auto 0 auto;
+      position: relative;
+      top: 15px;
+      box-shadow: 0 10px 0 #998c78, inset -2px -2px 10px #33221180;
+      border: 1px solid #fff2d7;
+      opacity: 0;
+      animation: layerDrop 0.7s cubic-bezier(0.25, 1.2, 0.5, 1) 1.8s forwards;
+    }
+
+    /* GLOWING FLAME - Absolutely working */
+    .flame {
+      width: 28px;
+      height: 45px;
+      background: radial-gradient(circle at 50% 30%, #fff9c4, #ffb347, #ff4500);
+      border-radius: 60% 40% 40% 60% / 60% 50% 40% 40%;
+      position: absolute;
+      top: -45px;
+      left: -3px;
+      animation: flameGlow 0.15s infinite alternate, flameDrift 2s infinite ease-in-out;
+      box-shadow: 0 0 50px 20px #ffaa33, 0 0 20px 8px #ff6600;
+      transform-origin: bottom center;
+    }
+
+    /* Glowing effect - very noticeable */
+    @keyframes flameGlow {
+      0% { transform: scale(1) rotate(-0.8deg); box-shadow: 0 0 45px 22px #ffaa33, 0 0 25px 12px #ff7b00; }
+      100% { transform: scale(1.18) rotate(0.8deg); box-shadow: 0 0 60px 35px #ffbb44, 0 0 30px 18px #ff9100; }
+    }
+
+    @keyframes flameDrift {
+      0% { top: -46px; left: -4px; }
+      50% { top: -42px; left: -1px; }
+      100% { top: -46px; left: -4px; }
+    }
+
+    /* Message card - glassmorphism */
+    #message-card {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      max-width: 800px;
+      background: rgba(18, 10, 28, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid #ffcf9a;
+      border-radius: 70px 70px 35px 35px;
+      padding: 25px 30px;
+      box-shadow: 0 25px 35px #000000b0, inset 0 0 40px #ffbf8040;
+      opacity: 0;
+      animation: messageRise 1s ease-out forwards 2.8s;
+      z-index: 35;
+    }
+
+    @keyframes messageRise {
+      0% { opacity: 0; transform: translateX(-50%) translateY(70px); }
+      100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    #greeting {
+      font-size: clamp(22px, 5.5vw, 36px);
+      font-weight: 700;
+      text-align: center;
+      background: linear-gradient(135deg, #ffe9a7, #ffc0cb, #b7dcff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      text-shadow: 0 0 30px #ffa8d0;
+    }
+
+    /* Signature */
+    .sig {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      background: #23123bb0;
+      border: 1.5px solid #ffdb9f;
+      color: #ffeec2;
+      padding: 7px 25px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      backdrop-filter: blur(4px);
+      z-index: 40;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 15px #00000060;
+    }
+
+    /* Left/Right banners - fill space */
+    .banner {
+      position: absolute;
+      top: 15%;
+      font-size: 12vw;
+      font-weight: 800;
+      color: rgba(255, 215, 200, 0.16);
+      white-space: nowrap;
+      rotate: -8deg;
+      z-index: 5;
+      pointer-events: none;
+      text-shadow: 0 0 30px #ffb3d9;
+      letter-spacing: 20px;
+    }
+    .banner-left { left: -60px; rotate: 12deg; }
+    .banner-right { right: -60px; rotate: -10deg; }
+
+    /* Sprinkles - infinite fall */
+    .sprinkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: gold;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      animation: sprinkleFall linear infinite;
+      z-index: 10;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 8px currentColor);
+    }
+
+    @keyframes sprinkleFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0.2; }
+    }
+
+    /* Firework particle */
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px 10px 2px 10px;
+      box-shadow: 0 0 25px currentColor;
+      transition: transform 1s cubic-bezier(0.2, 0.7, 0.3, 1), opacity 0.9s ease;
+      pointer-events: none;
+      z-index: 200;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated background orbs -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <!-- Side banners -->
+  <div class="banner banner-left">✨👑✨</div>
+  <div class="banner banner-right">🎓📚🎓</div>
+
+  <!-- Signature -->
+  <div class="sig">💫 Muzammil</div>
+
+  <!-- Cake Structure -->
+  <div id="cake">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+    <div id="l1" class="layer"></div>
+    <div id="l2" class="layer"></div>
+    <div id="l3" class="layer"></div>
+  </div>
+
+  <!-- Message Card -->
+  <div id="message-card">
+    <div id="greeting"></div>
+  </div>
+
+  <script>
+    (function() {
+      // --- Typing animation ---
+      const message = `🎂 HAPPY BIRTHDAY SIR IFTIKHAR! 🎂\n\nThe most inspiring teacher, a true legend.\nMay your day be filled with joy and pride.\n\n— From your devoted student, Muzammil`;
+
+      let i = 0;
+      const el = document.getElementById('greeting');
+      el.innerHTML = '';
+
+      function typeWriter() {
+        if (i < message.length) {
+          el.innerHTML += message.charAt(i);
+          i++;
+          setTimeout(typeWriter, 45);
+        }
+      }
+      setTimeout(typeWriter, 3500); // start after card appears
+
+      // --- Sprinkles (lots, but smooth) ---
+      for (let s = 0; s < 200; s++) {
+        const sp = document.createElement('div');
+        sp.className = 'sprinkle';
+        sp.style.left = Math.random() * 100 + '%';
+        sp.style.animationDuration = (2 + Math.random() * 5) + 's';
+        sp.style.animationDelay = (Math.random() * 4) + 's';
+        const hue = Math.floor(Math.random() * 360);
+        sp.style.background = `hsl(${hue}, 95%, 70%)`;
+        sp.style.color = `hsl(${hue}, 95%, 70%)`; // for box-shadow
+        sp.style.width = (4 + Math.random() * 12) + 'px';
+        sp.style.height = sp.style.width;
+        document.body.appendChild(sp);
+      }
+
+      // --- Fireworks (bursts) ---
+      function fireworkBurst(x, y, color1, color2) {
+        const count = 24;
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement('div');
+          p.className = 'particle';
+          p.style.left = x + 'px';
+          p.style.top = y + 'px';
+          const col = i % 2 === 0 ? color1 : color2;
+          p.style.background = col;
+          p.style.boxShadow = `0 0 30px ${col}`;
+          p.style.width = (6 + Math.random() * 8) + 'px';
+          p.style.height = p.style.width;
+          p.style.opacity = '1';
+          document.body.appendChild(p);
+
+          const angle = (i / count) * 2 * Math.PI + Math.random() * 0.3;
+          const distance = 80 + Math.random() * 140;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+
+          requestAnimationFrame(() => {
+            p.style.transform = `translate(${tx}px, ${ty}px) scale(0.3)`;
+            p.style.opacity = '0';
+          });
+
+          setTimeout(() => p.remove(), 1200);
+        }
+      }
+
+      // Schedule fireworks (after cake & message)
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.5, window.innerHeight * 0.4, '#fcd34d', '#fbbf24'), 4000);
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.3, window.innerHeight * 0.55, '#f9a8d4', '#ec4899'), 4600);
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.7, window.innerHeight * 0.3, '#7dd3fc', '#38bdf8'), 5200);
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.5, window.innerHeight * 0.6, '#bef264', '#84cc16'), 5800);
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.4, window.innerHeight * 0.7, '#d8b4fe', '#a78bfa'), 6400);
+      setTimeout(() => fireworkBurst(window.innerWidth * 0.6, window.innerHeight * 0.45, '#fde047', '#facc15'), 7000);
+      // Grand finale
+      setTimeout(() => {
+        fireworkBurst(window.innerWidth * 0.5, window.innerHeight * 0.3, '#ffb3ba', '#ffdfba');
+        fireworkBurst(window.innerWidth * 0.5, window.innerHeight * 0.6, '#bae1ff', '#c0f0c0');
+      }, 8000);
+
+      // --- Additional floating glow from candle (subtle) ---
+      setInterval(() => {
+        const flame = document.querySelector('.flame');
+        if (!flame) return;
+        const spark = document.createElement('div');
+        spark.style.position = 'absolute';
+        spark.style.width = '5px';
+        spark.style.height = '5px';
+        spark.style.background = '#ffdb8e';
+        spark.style.borderRadius = '50%';
+        spark.style.boxShadow = '0 0 15px #ffb347';
+        spark.style.left = (window.innerWidth / 2 - 5 + Math.random() * 16) + 'px';
+        spark.style.top = (window.innerHeight / 2 - 140) + 'px';
+        spark.style.zIndex = '300';
+        spark.style.transition = 'transform 1.2s ease-out, opacity 1.2s';
+        document.body.appendChild(spark);
+        setTimeout(() => {
+          spark.style.transform = `translate(${(Math.random() - 0.5) * 60}px, -70px) scale(0.2)`;
+          spark.style.opacity = '0';
+        }, 10);
+        setTimeout(() => spark.remove(), 1300);
+      }, 2000);
+
+    })();
+  </script>
+
+  <style>
+    /* ensure hardware acceleration */
+    .layer, .candle, .flame, .particle, .sprinkle {
+      will-change: transform, opacity, box-shadow;
+    }
+  </style>
+</body>
+</html>
